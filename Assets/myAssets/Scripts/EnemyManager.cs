@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameMode
+public enum GameMode //put in GameManager script
 {
     Menu,
     Prep,
@@ -9,7 +9,7 @@ public enum GameMode
 }
 
 
-public class EnemyManager : MonoBehaviour
+public class EnemyManager : Singleton<EnemyManager>
 {
     public GameObject[] EnemyPrefabs;
     public Transform[] NodeList;

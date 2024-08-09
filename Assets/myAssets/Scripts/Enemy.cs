@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         curSpd = 1;
+        nxtNode = tempNodeList[1].transform.position;
     }
 
     // Move self toward target
@@ -31,20 +32,14 @@ public class Enemy : MonoBehaviour
     private void Move(float _spd, Vector3 _node)
     {
         //transform.Translate(_node, _spd * Time.deltaTime);
-        transform.Translate(_node.x * _spd, _node.y * _spd, _node.z * _spd);
+        transform.Translate(_node.x * _spd * Time.deltaTime, _node.y * _spd * Time.deltaTime, _node.z * _spd * Time.deltaTime);
     }
 
-    public void NewNode(Vector3 _node)
-    {
-        nxtNode = _node;
-    }
+    public void NewNode(Vector3 _node) => nxtNode = _node;
 
-    public void SpecificNode(int _i)
-    {
-        NewNode(tempNodeList[_i].transform.position);
-    }
+    public void SpecificNode(int _i) => NewNode(tempNodeList[_i].transform.position);
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision) //when hitting node marker, progress to next node in list. maybe use Vector3.Distance
     {
         if (collision.gameObject.layer.Equals("NextNode"))
         {
