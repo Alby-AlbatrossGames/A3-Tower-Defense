@@ -1,26 +1,25 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using TMPro.EditorUtilities;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : GameBehaviour
 {
-    public float maxSpd = 10f;
+    public float maxSpd = 5f;
     public float curSpd;
     public int maxHP = 10;
     public int curHP;
     public Vector3 nxtNode;
-    private int curNode = 0;
+    private int curNode;
     private float nodeDist = 0.2f;
-
-    private GameObject _GM;
 
     public List<GameObject> tempNodeList;
 
     private void Start()
     {
-        curSpd = 1;
-        nxtNode = tempNodeList[1].transform.position;
+        curSpd = maxSpd;
+        curNode = 0;
+        transform.position = _EM.NodeList[curNode].position;
+        nxtNode = _EM.NodeList[curNode+1].transform.position;
     }
 
     // Move self toward target
@@ -31,20 +30,27 @@ public class Enemy : MonoBehaviour
 
     private void Move(float _spd, Vector3 _node)
     {
-        //transform.Translate(_node, _spd * Time.deltaTime);
-        transform.Translate(_node.x * _spd * Time.deltaTime, _node.y * _spd * Time.deltaTime, _node.z * _spd * Time.deltaTime);
+        if (Vector3.Distance(transform.position, _node) < nodeDist)
+            NextNode();
+
+        //move towards target position
+        transform.position = Vector3.MoveTowards(transform.position, _node, curSpd * Time.deltaTime);
     }
 
-    public void NewNode(Vector3 _node) => nxtNode = _node;
+    public void SpecificNode(int _i) => nxtNode = _EM.NodeList[_i].transform.position;//NewNode(_EM.NodeList[_i].transform.position);
 
-    public void SpecificNode(int _i) => NewNode(tempNodeList[_i].transform.position);
-
-    private void OnCollisionEnter(Collision collision) //when hitting node marker, progress to next node in list. maybe use Vector3.Distance
+    public void NextNode()
     {
-        if (collision.gameObject.layer.Equals("NextNode"))
+        if (curNode == _EM.NodeList.Length-1)
         {
-            curNode += 1;
-            SpecificNode(curNode);
+            //damage player [code goes here]
+            Die();
+            return;
         }
+
+        curNode += 1;
+        SpecificNode(curNode);
     }
+
+    public void Die() => Destroy(gameObject);
 }
