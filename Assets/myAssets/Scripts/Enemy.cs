@@ -16,6 +16,7 @@ public class Enemy : GameBehaviour
 
     private void Start()
     {
+        curHP = maxHP;
         curSpd = maxSpd;
         curNode = 0;
         transform.position = _EM.NodeList[curNode].position;
