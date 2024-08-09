@@ -18,8 +18,14 @@ public class EnemyManager : Singleton<EnemyManager>
 
     void SpawnEnemy(int _type)
     {
-        Instantiate(EnemyPrefabs[_type]);
-        Debug.Log("Spawned!");
+        GameObject thisEnemy = Instantiate(EnemyPrefabs[_type]);
+        ActiveEnemyList.Add(thisEnemy);
+    }
+
+    public void KillEnemy(GameObject go)
+    {
+        ActiveEnemyList.Remove(go);
+        Destroy(go);
     }
 
     public IEnumerator SpawnWave(int _hordeCount, int _hordeSize, int _type)

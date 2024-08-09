@@ -3,6 +3,9 @@ using UnityEngine;
 public class Tile : GameBehaviour
 {
     private Renderer tileRenderer;
+    public Material defaultMat;
+    public Material selectMat;
+    public Material unavailMat;
 
     private void Awake()
     {
@@ -13,12 +16,12 @@ public class Tile : GameBehaviour
     {
         if (!canBuild)
             return;
-        tileRenderer.material.color = Color.blue;
+        tileRenderer.material = selectMat;
     }
     private void OnMouseExit()
     {
         if (!canBuild)
             return;
-        tileRenderer.material.color = Color.red;
+        tileRenderer.material = defaultMat;
     }
 }

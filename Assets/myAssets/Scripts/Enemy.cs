@@ -52,5 +52,13 @@ public class Enemy : GameBehaviour
         SpecificNode(curNode);
     }
 
-    public void Die() => Destroy(gameObject);
+    public void Die() => _EM.KillEnemy(gameObject);
+
+    public void TakeDamage(int _dmg)
+    {
+        Debug.Log(curHP + "/" + maxHP);
+        curHP -= _dmg;
+        if (curHP <= 0)
+            Die();
+    }
 }

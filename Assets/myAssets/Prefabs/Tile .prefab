@@ -121,3 +121,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d28a7a109160ff4188bbcd2d5864368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultMat: {fileID: 2100000, guid: f0ce4f67ee7fc5a4e90656216514ee8d, type: 2}
+  selectMat: {fileID: 2100000, guid: f5db17406891b1e4f883d7175f13b6f0, type: 2}
+  unavailMat: {fileID: 2100000, guid: 139b0aa22f3fa594ebed159d56f47a0e, type: 2}
