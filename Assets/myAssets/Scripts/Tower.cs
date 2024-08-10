@@ -1,14 +1,16 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Tower : GameBehaviour
 {
-    public int fireDelay;
+    public float fireDelay = 0.3f;
     public int dmg = 1;
-    public float radius = 1;
+    public float radius = 2;
     public GameObject radiusObj;
     public float rSpd = 1000f;
     private bool isSelected = true;
+    private bool isFiring = false;
 
     private GameObject closeEnemy;
 
@@ -25,9 +27,11 @@ public class Tower : GameBehaviour
                 if (GetClosestEnemy() != null)
                 {
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(transform.position - closeEnemy.transform.position), Time.deltaTime * rSpd);
-                    if (Vector3.Distance(transform.position, closeEnemy.transform.position) < radius)
+                    if (CheckRange(closeEnemy))
                     {
-                        closeEnemy.GetComponent<Enemy>().TakeDamage(dmg);//this makes them die at the next Node? idk why
+                        if (!isFiring)
+                            StartCoroutine(Fire(closeEnemy));
+                        //closeEnemy.GetComponent<Enemy>().TakeDamage(dmg);//this makes them die at the next Node? idk why
                     }
                 }
                 ToggleActive(true);
@@ -40,14 +44,25 @@ public class Tower : GameBehaviour
         
     }
 
+    bool CheckRange(GameObject _target)
+    {
+        if (_target == null) return false;
+
+        if (Vector3.Distance(transform.position, _target.transform.position) < radius)
+            return true;
+        else return false;
+    }
+
     float GetDistanceToEnemy(GameObject go)
     {
-        return Vector3.Distance(this.gameObject.transform.position, go.transform.position);
+        if (go != null)
+            return Vector3.Distance(this.gameObject.transform.position, go.transform.position);
+        else return radius;
     }
 
     GameObject GetClosestEnemy()
     {
-        float oldDist = 999999f;
+        float oldDist = radius;
         float newDist;
         foreach (GameObject g in _EM.ActiveEnemyList)
         {
@@ -86,10 +101,28 @@ public class Tower : GameBehaviour
             
     }
 
-    /*private IEnumerator Fire()
+    private IEnumerator Fire(GameObject _target)
     {
-        closeEnemy.GetComponent<Enemy>().TakeDamage(dmg);
-        yield return new WaitForSeconds(fireDelay);
+        Debug.Log("IN RANGE!");
+        isFiring = true;
+        _target.GetComponent<Enemy>().TakeDamage(dmg);
+        this.GetComponent<Renderer>().material.color = Color.green;
+        yield return new WaitForSeconds(fireDelay);//fireDelay
+        GetComponent<Renderer>().material.color = Color.red;
+        isFiring = false;
+        yield return null;
+
+        /*if (CheckRange(_target))
+        {
+            Debug.LogWarning("Still in range!");
+            Fire(_target);
+        }else
+        {
+            Debug.Log("not close enough!");
+            GetComponent<Renderer>().material.color = Color.red;
+            isFiring = false;
+            yield return null;
+        }*/
     }
-    */
+    
 }

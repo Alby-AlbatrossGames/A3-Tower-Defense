@@ -27,7 +27,6 @@ public class GameManager : Singleton<GameManager>
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             StartWave(curWave);
-            Debug.Log("[_GM]:Next Wave Spawned");
         }
             
     }

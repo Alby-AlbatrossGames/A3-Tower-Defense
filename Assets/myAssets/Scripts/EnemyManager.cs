@@ -33,7 +33,6 @@ public class EnemyManager : Singleton<EnemyManager>
         for (int i = 0; i < _hordeCount; i++)
         {
             StartCoroutine(SpawnHorde(_hordeSize, _type));
-            Debug.Log("SpawnWave");
             yield return new WaitForSeconds(Random.Range(0.5f,1.5f)); //fix time
         }
         
@@ -44,7 +43,6 @@ public class EnemyManager : Singleton<EnemyManager>
         for (int i = 0; i < _count; i++)
         {
             SpawnEnemy(_type);
-            Debug.Log("SpawnEnemy");
             yield return new WaitForSeconds(Random.Range(0.5f,1.5f)); //fix time
         }
     }
