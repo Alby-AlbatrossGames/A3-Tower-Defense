@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public enum GameState
@@ -10,27 +11,11 @@ public enum GameState
 public class GameManager : Singleton<GameManager>
 {
     public GameState gState;
-    public int curWave = 0;
 
     private void Start()
     {
-        curWave = 1;
+        Setup();
     }
-
-    public void StartWave(int _wave)
-    {
-        StartCoroutine(_EM.SpawnWave(_wave, _wave + 2, 0));
-        curWave++;
-    }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            StartWave(curWave);
-        }
-            
-    }
-
     void Setup()
     {
         //set player and inventory values to default
@@ -40,17 +25,34 @@ public class GameManager : Singleton<GameManager>
         SetMode(GameState.Build);
     }
 
-    void SetMode(GameState _state)
+    public void SetMode(GameState _state)
     {
         gState = _state;
         switch (gState)
         {
             case GameState.Attack:
-                //change to Attack state
+                Debug.LogError("Attack Mode");
+                _WM.BeginWave();
                 break;
             case GameState.Build:
+                Debug.LogError("Build Mode");
                 //change to Build state
                 break;
+        }
+    }
+
+    public TMP_Text title;
+    public void TempToggleGamemode()
+    {
+        if (gState == GameState.Attack)
+        {
+            SetMode(GameState.Build);
+            title.text = "MODE: Build";
+        }
+        else if (gState == GameState.Build)
+        {
+            SetMode(GameState.Attack);
+            title.text = "MODE: Attack";
         }
     }
 }

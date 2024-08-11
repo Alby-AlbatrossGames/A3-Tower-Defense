@@ -3351,7 +3351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gState: 0
-  curWave: 1
+  title: {fileID: 2070546415}
 --- !u!4 &458567175 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8560547619606314598, guid: f8bbcc45ffae3c3478f36fffb62692be, type: 3}
@@ -4846,6 +4846,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8560547619606314598, guid: f8bbcc45ffae3c3478f36fffb62692be, type: 3}
   m_PrefabInstance: {fileID: 778980455}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &762817558
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 762817560}
+  - component: {fileID: 762817559}
+  m_Layer: 0
+  m_Name: UI Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &762817559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762817558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 256c8d3ae016deb44bb751c3784e5ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveText: {fileID: 446951091}
+--- !u!4 &762817560
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762817558}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.306687, y: 5.9237013, z: 6.260926}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &766102483
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7828,7 +7873,6 @@ GameObject:
   - component: {fileID: 1187794004}
   - component: {fileID: 1187794003}
   - component: {fileID: 1187794002}
-  - component: {fileID: 1187794001}
   m_Layer: 5
   m_Name: Gamemode Changer
   m_TagString: Untagged
@@ -7856,19 +7900,6 @@ RectTransform:
   m_AnchoredPosition: {x: -552.7344, y: 309.89587}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1187794001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1187793999}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c94b7a90f90907b40b88f38b92d2fb1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  title: {fileID: 2070546415}
 --- !u!114 &1187794002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7913,9 +7944,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1187794001}
-        m_TargetAssemblyTypeName: ToggleTemp, Assembly-CSharp
-        m_MethodName: ToggleGamemode
+      - m_Target: {fileID: 456774659}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: TempToggleGamemode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9665,7 +9696,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1539422822}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 90}
   m_LocalScale: {x: 0.017388992, y: 0.017388992, z: 0.017388992}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14331,6 +14362,7 @@ SceneRoots:
   - {fileID: 1421133274}
   - {fileID: 456774658}
   - {fileID: 557499581}
+  - {fileID: 762817560}
   - {fileID: 1976368378}
   - {fileID: 905131491}
   - {fileID: 1346023554}

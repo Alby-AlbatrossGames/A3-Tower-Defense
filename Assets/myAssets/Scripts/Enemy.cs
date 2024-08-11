@@ -57,7 +57,6 @@ public class Enemy : GameBehaviour
 
     public void TakeDamage(int _dmg)
     {
-        Debug.Log(curHP + "/" + maxHP);
         curHP -= _dmg;
         if (curHP <= 0)
             Die();

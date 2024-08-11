@@ -8,20 +8,26 @@ public class EnemyManager : Singleton<EnemyManager>
     public Transform[] NodeList;
     public List<GameObject> ActiveEnemyList;
 
+    public int ActiveEnemies() => ActiveEnemyList.Count;
+
     void SpawnEnemy(int _type)
     {
         GameObject thisEnemy = Instantiate(EnemyPrefabs[_type]);
         ActiveEnemyList.Add(thisEnemy);
+        _WM.enemiesSpawnedThisWave++;
     }
 
     public void KillEnemy(GameObject go)
     {
         ActiveEnemyList.Remove(go);
         Destroy(go);
+        _WM.CheckWaveStatus();
+        Debug.Log("Enemy Killed! [" + ActiveEnemyList.Count + "] Enemies Left");
     }
 
     public IEnumerator SpawnWave(int _hordeCount, int _hordeSize, int _type)
     {
+        Debug.LogWarning("[EM] SpawnWave"+_hordeCount+" "+_hordeSize);
         for (int i = 0; i < _hordeCount; i++)
         {
             StartCoroutine(SpawnHorde(_hordeSize, _type));
@@ -32,6 +38,7 @@ public class EnemyManager : Singleton<EnemyManager>
 
     public IEnumerator SpawnHorde(int _count, int _type)
     {
+        Debug.LogWarning("[EM] SpawnHorde"+_count);
         for (int i = 0; i < _count; i++)
         {
             SpawnEnemy(_type);
