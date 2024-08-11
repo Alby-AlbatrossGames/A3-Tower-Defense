@@ -2,14 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
 
-public enum GameMode //put in GameManager script
-{
-    Menu,
-    Prep,
-    Attack
-}
-
-
 public class EnemyManager : Singleton<EnemyManager>
 {
     public GameObject[] EnemyPrefabs;

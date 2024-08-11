@@ -30,4 +30,27 @@ public class GameManager : Singleton<GameManager>
         }
             
     }
+
+    void Setup()
+    {
+        //set player and inventory values to default
+        //start at Wave 1
+        //start in Build Mode
+
+        SetMode(GameState.Build);
+    }
+
+    void SetMode(GameState _state)
+    {
+        gState = _state;
+        switch (gState)
+        {
+            case GameState.Attack:
+                //change to Attack state
+                break;
+            case GameState.Build:
+                //change to Build state
+                break;
+        }
+    }
 }
