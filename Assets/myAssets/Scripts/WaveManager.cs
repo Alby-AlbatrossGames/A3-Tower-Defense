@@ -32,7 +32,7 @@ public class WaveManager : Singleton<WaveManager>
         Debug.Log("Enemies Spawned: " + enemiesSpawnedThisWave);
         Debug.Log("Enemies To Spawn: " + enemiesToSpawn);
         if (enemiesSpawnedThisWave == enemiesToSpawn)
-            if (enemiesLeft < enemiesSpawnedThisWave)
+            if (enemiesLeft <= 0)
                 EndWave();
     }
 

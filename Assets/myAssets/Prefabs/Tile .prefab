@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4639732177106341}
   - component: {fileID: 5850613946588043011}
   - component: {fileID: 8583373005173063390}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: 'Tile '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,3 +126,4 @@ MonoBehaviour:
   unavailMat: {fileID: 2100000, guid: 139b0aa22f3fa594ebed159d56f47a0e, type: 2}
   towerList:
   - {fileID: 3511028986609070111, guid: f2e5aa61455fe804fa3c9b57dc4e1268, type: 3}
+  placeText: {fileID: 0}

@@ -7,6 +7,7 @@ public class Tower : GameBehaviour
     public float fireDelay = 0.3f;
     public int dmg = 1;
     public float radius = 2;
+    private float radiusCalc = 1.5f;
     public GameObject radiusObj;
     public float rSpd = 1000f;
     private bool isSelected = true;
@@ -14,10 +15,6 @@ public class Tower : GameBehaviour
 
     private GameObject closeEnemy;
 
-    private void Start()
-    {
-        SetSize();
-    }
     private void LateUpdate()
     {
         closeEnemy = GetClosestEnemy();
@@ -80,11 +77,6 @@ public class Tower : GameBehaviour
     {
         if (canBuild)
             ToggleActive();
-    }
-
-    private void SetSize()
-    {
-        radiusObj.transform.localScale = new Vector3(radiusObj.transform.localScale.x * radius, radiusObj.transform.localScale.y * radius, radiusObj.transform.localScale.z * radius);
     }
 
     private void ToggleActive(bool off = false)

@@ -11,17 +11,20 @@ public class Tile : GameBehaviour
     public Material unavailMat;
     public List<GameObject> towerList;
     public GameObject placeText;
+    private bool hasTower;
 
     private void Awake()
     {
         tileRenderer = GetComponent<Renderer>();
         placeText = GameObject.FindGameObjectWithTag("PlaceText");
+        hasTower = false;
     }
 
     private void OnMouseEnter()
     {
-        if (!canBuild)
+        if (!canBuild || hasTower)
             return;
+
         tileRenderer.material = selectMat;
 
         placeText.SetActive(true);
@@ -42,7 +45,8 @@ public class Tile : GameBehaviour
     }
     private void OnMouseUpAsButton()
     {
-        if (!canBuild) return;
+        if (!canBuild || hasTower) return;
         Instantiate(towerList[0], transform.position, transform.rotation);
+        hasTower = true;
     }
 }
