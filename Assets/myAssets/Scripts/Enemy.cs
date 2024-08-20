@@ -1,13 +1,12 @@
 using System.Collections.Generic;
-using TMPro.EditorUtilities;
 using UnityEngine;
 
 public class Enemy : GameBehaviour
 {
     public float maxSpd = 5f;
     public float curSpd;
-    public int maxHP = 10;
-    public int curHP;
+    public float maxHP = 10;
+    public float curHP;
     public Vector3 nxtNode;
     private int curNode;
     private float nodeDist = 0.2f;
@@ -16,6 +15,7 @@ public class Enemy : GameBehaviour
 
     private void Start()
     {
+        maxHP = (_WM.currentWave * Random.Range(0.25f, 1.75f));
         curHP = maxHP;
         curSpd = maxSpd;
         curNode = 0;
@@ -44,7 +44,7 @@ public class Enemy : GameBehaviour
     {
         if (curNode == _EM.NodeList.Length-1)
         {
-            //damage player [code goes here]
+            _PLAYER.TakeDamage();
             Die();
             return;
         }

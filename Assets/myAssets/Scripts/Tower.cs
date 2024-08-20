@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Tower : GameBehaviour
 {
-    public float fireDelay = 0.3f;
+    public float fireDelay = 0.5f;
     public int dmg = 1;
     public float radius = 2;
-    private float radiusCalc = 1.5f;
     public GameObject radiusObj;
     public float rSpd = 1000f;
     private bool isSelected = true;

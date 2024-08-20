@@ -19,7 +19,7 @@ public class WaveManager : Singleton<WaveManager>
         enemiesSpawnedThisWave = 0;
         waveOngoing = true;
         Debug.Log("Wave [" + currentWave + "] Started");
-        enemiesToSpawn = Random.Range(1, currentWave);
+        enemiesToSpawn = (currentWave + Random.Range(1, currentWave));
         Debug.Log("Spawning [" + enemiesToSpawn + "] Enemies");
         StartCoroutine(_EM.SpawnWave(1, enemiesToSpawn, Random.Range(0, _EM.EnemyPrefabs.Length)));
     }

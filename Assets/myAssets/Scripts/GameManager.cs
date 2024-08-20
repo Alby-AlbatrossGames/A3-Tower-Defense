@@ -40,19 +40,15 @@ public class GameManager : Singleton<GameManager>
                 break;
         }
     }
-
-    public TMP_Text title;
     public void TempToggleGamemode()
     {
         if (gState == GameState.Attack)
         {
             SetMode(GameState.Build);
-            title.text = "MODE: Build";
         }
         else if (gState == GameState.Build)
         {
             SetMode(GameState.Attack);
-            title.text = "MODE: Attack";
         }
     }
 }
