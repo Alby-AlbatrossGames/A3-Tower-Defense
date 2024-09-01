@@ -51,8 +51,6 @@ public class Player : Singleton<Player>
 
 public class Card : ScriptableObject
 {
-    
-
     public CardType type;
     public int value;
 }
